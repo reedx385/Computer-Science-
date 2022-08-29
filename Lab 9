@@ -1,0 +1,73 @@
+def morsecode():
+    # Morse dictionary for Lab 9
+# Copy/paste this for use with the stretch
+    morse = {
+        'A' : ". _",
+        'B' : "_ . . .",
+        'C' : "_ . _ .",
+        'D' : "_ . .",
+        'E' : ".",
+        'F' : ". . _ .",
+        'G' : "_ _ .",
+        'H' : ". . . .",
+        'I' : ". .",
+        'J' : ". _ _ _",
+        'K' : "_ . _",
+        'L' : ". _ . .",
+        'M' : "_ _",
+        'N' : "_ .",
+        'O' : "_ _ _",
+        'P' : ". _ _ .",
+        'Q' : "_ _ . _",
+        'R' : ". _ .",
+        'S' : ". . .",
+        'T' : "_",
+        'U' : ". . _",
+        'V' : ". . . _",
+        'W' : ". _ _",
+        'X' : "_ . . _",
+        'Y' : "_ . _ _",
+        'Z' : "_ _ . ."
+    }
+    phrase = input("Enter a phrase: ")
+    phrase = phrase.upper()
+    for i in phrase:
+        if " " ==i:
+            print()
+        elif i in ".!?":
+            print()
+            print()
+        else:
+            morsetrans = morse[i]
+            print (morsetrans)
+#/n just is like a return, could also use this
+
+#Warmup
+def rankandSuitCount(cards):
+    rankdict = {}
+    setdict = {}
+    for i in range(len(cards)):
+        if i == "C" or "S" or "D" or "H":
+            rankdict[i] = rankdict.get(i,0)+1
+            return rankdict
+        elif i == "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "T" or "J" or "Q" or "K" or "A":
+            suitdict[i] = suitdict.get(i,0) + 1
+            return suitdict 
+        else:
+            print("not suitable") #lmao nice Emma
+
+#Warmup 
+def makeDictionary(names, scores):
+    #'joe', 'tom', 'barb', 'sue', 'sally'
+    #10,23,13,18,12
+    dictionary = {}
+    for i in range(len(names)):
+        dictionary[names[i]] = scores[i]
+    return dictionary
+
+def getScore(name, dictionary):
+    if name in dictionary:
+        value = dictionary[name]
+        return value
+    else:
+        return -1 and "Error not in dictionary"
