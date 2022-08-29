@@ -1,0 +1,12 @@
+#Pinchall
+import turtle
+turtle.showturtle()
+
+#Round
+def round_int(n):
+    if n>0:
+        n=n+0.5
+    else:
+        n=n-0.5
+    return int(n)
+    
