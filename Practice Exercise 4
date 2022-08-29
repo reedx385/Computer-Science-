@@ -1,0 +1,99 @@
+#if __name__ == '__main__': main()  this is so that autimatically executed when module is loaded
+
+#binary to decimal
+def binaryToInt(bstr):
+     i = len(bstr)-1
+     value = 0 while i >= 0:
+     value += int(bstr[i])*2**(len(bstr)-i-1)
+     i -= 1 return value
+def main():
+    cont = 'y'
+    while cont == 'y' or cont =='Y':
+        istr = input("enter a binary value: ")
+        print(binaryToInt(istr))
+        cont = input("Continue? (y/n)" )
+
+#password checking
+def countUpper(string): #count the number of upper case letters ucase = 0
+for ch in string:
+if ch in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+ucase += 1 return ucase
+def countDigits(string):
+    for ch in string:
+        if ch in '0123456789':
+            digits += 1 return digits
+def countNonAlpha(string):
+    alphaupper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" alphalower = "abcdefghijklmnopqrstuvwxyz"
+    digits for ch if
+return = '0123456789'
+in string:
+ch not in alphaupper and ch not in alphalower and ch not in digits:
+    nonalpha += 1 nonalpha
+def passwordCheck(password):
+    return len(password) >= 8 and countUpper(password) >= 1 and  countDigits(password) >= 2 and countNonAlpha(password) >= 1
+def main():
+    valid = False
+    while not valid:
+        istr = input("enter a password: ") valid = passwordCheck(istr)
+    if valid:
+        print(istr,"is valid")
+    else:
+        print(istr,"is not a valid password")
+print()
+
+# Alternating sum
+def altsum(values):
+    asum = 0 coefficient = 1 for x in values:
+        asum += coefficient*x
+        coefficient *= -1 return asum
+def main():
+    vlist = []
+    istr = 'x'
+    while istr
+    istr =
+    != "":
+        input("enter a floating point value: ") if istr != "":
+            vlist.append(float(istr))
+         print()
+    print("The alternating sum is:",altsum(vlist))
+
+#roman numerals
+def convertDigit(letter):
+    digits = "IVXLCDM"
+    values = [1,5,10,50,100,500,1000]
+    i=0
+    while i < len(digits) and letter != digits[i]:
+        i += 1
+    if i < len(digits):
+        return values[i]
+    return 0
+def convertRoman(istr):
+    lastvalue = 0
+    for ch in istr:
+        currentvalue = convertDigit(ch) if lastvalue < currentvalue:
+            decimalval -= lastvalue else:
+                decimalval += lastvalue
+                lastvalue = currentvalue
+    return decimalval + lastvalue
+def main():
+    done = False
+    while not done:
+        romannumeral = input("Enter a Roman Numeral as a string: ") if len(romannumeral) == 0:
+            done = True
+    else:
+        print("Decimal value:",convertRoman(romannumeral))
+
+# Sieve of Eratosthenes
+def markMultiples(n,lst):
+    index = n*2:
+        lst[index] = 0 index += n
+def nextPrime(n,lst):
+    n += 1
+    while n < len(lst) and lst[n] == 0:
+        n += 1 return n
+def main():
+    upperbound = int(input("Enter an upperbound: if upperbound < 2:
+        print("Invalid upper bound!") else:
+            while p < upperbound: markMultiples(p,plist)
+            print(p)
+            p = nextPrime(p,plist)
