@@ -1,0 +1,64 @@
+#why even
+class rational:
+    def __init__(self,num=0,den=1):
+        self.numerator = num
+        if den == 0:
+            self.denominator = 1
+        else:
+            self.denominator = den
+#warmup
+    def __str__(self):
+        if self.denominator == 1:
+            return str(self.numerator)
+        elif self.numerator == 0:
+            return str(self.numerator)
+        else:
+            return str(self.numerator) +'/'+ str(self.denominator)
+#stretch
+class measure:
+    def __init__(self,feet=0,inches=None):
+        if inches==None:
+            self.inches = feet
+            self.feet = 0
+        else:
+            self.feet = feet
+            self.inches = inches
+        if self.inches >= 12:
+            self.feet += self.inches//12
+            self.inches = self.inches%12
+#part2
+    def __str__(self):
+        if self.feet == 0:
+            return str(self.inches) + '"'
+        elif self.inches == None:
+            return str(self.feet) + '\''
+        elif self.inches==None and self.feet==0:
+            return str(0) + '"'
+        else:
+            return str(self.feet) + '\'' + str(self.inches) + '"'
+#part3
+    def __add__(self,rhand):
+        inches = self.inches + rhand.inches
+        feet = self.feet + rhand.feet
+        return measure(feet, inches)
+    def __sub__(self,rhand):
+        if self.feet > rhand.feet:
+            feet = self.feet - rhand.feet
+            inches = self.inches - rhand.inches
+        else:
+            feet = rhand.feet - self.feet
+            inches = rhand.inches - self.inches
+        if inches >= 0:
+            return measure(feet, inches)
+        else:
+            feet -= 1
+            inches += 12
+            return measure(feet, inches)
+#part4
+def main():
+    m1 = measure()
+    m2 = measure(4,11)
+    m3 = measure(6,10)
+    print(m1)
+    print(m2+m3)
+    print(m3-m2)
