@@ -1,0 +1,51 @@
+import turtle
+import random
+class Shape():
+    def __init__(self, x=0, y=0, fillcolor = "", filled = False):
+        self.x = x
+        self.y = y
+        self.fillcolor = fillcolor
+        self.filled = filled
+    #location default 00
+    #color fill default Null string
+    #filled default to False
+    def setFillcolor(self, potato):
+        self.fillcolor = potato
+    def setFilled(self, fill):
+        self.filled = fill
+    def isFilled(self):
+        return self.filled
+class Circle(Shape):
+    def __init__(self, x=0, y=0, radius= 1):
+        super().__init__(x,y)
+        self.radius = radius
+    def draw(self, myt):
+        myt.penup()
+        myt.goto(self.x, self.y)
+        myt.pendown()
+        myt.color(self.fillcolor)
+        myt.begin_fill()
+        myt.circle(self.radius)
+        myt.end_fill()
+        #a = Circle()
+        #b = turtle.turtle
+        #a.draw(b)
+class Display():
+    def __init__(self):
+        self.turtvar = turtle.Turtle()
+        self.scrnvar = self.turtvar.getscreen()
+        self.elementlist = []
+        self.turtvar.speed(0)
+        self.scrnvar.delay(0)
+        self.turtvar.hideturtle()
+        self.scrnvar.onclick(self.mouseEvent)
+    def mouseEvent(self, x=0, y=0):
+        myCircle = Circle(x,y,random.randint(10,100))
+        myCircle.setFilled(True)
+        #color = ['alice blue', 'azure2', 'LavenderBlush', 'pink'] #pastels
+        color = ['goldenrod3', 'firebrick4', 'cornsilk2','dark slate gray']#earthy colors
+        #cornsilk2
+        #https://www.tcl.tk/man/tcl8.4/TkCmd/colors.htm
+        random.shuffle(color)
+        myCircle.setFillcolor(color[0])
+        myCircle.draw(self.turtvar)
