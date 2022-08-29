@@ -1,0 +1,174 @@
+import turtle #Part 2
+turtle.showturtle()
+"""def vowelCount(astring): #run this and see if it has to be above
+    num_vowels=0
+    for chr in string: #is chr the right fnc
+        if chr in "aeiou":
+            num_vowels = num_vowels+1
+    return num_vowels"""
+turtle.textinput(str)
+str(input()) #"Hay dias tontos y tontos todos los dias"
+a = "a" #figure out if this needs to be in quotes
+e = "e"
+i = "i"
+o = "o"
+u = "u"
+A = "a"
+E = "e"
+I = "i"
+O = "o"
+U = "u"
+acount = 0
+ecount = 0
+icount = 0
+ocount = 0
+ucount = 0
+if a or A is in str: #does this need to be in the str count
+    acount = acount + 1
+    return True
+if e or E is in str:
+    ecount = ecount + 1
+    return True
+if i or I is in str:
+    icount = icount + 1
+    return True
+if o or O is in str:
+    ocount = ocount + 1
+    return True
+if u or U is in str:
+    ucount = ucount + 1
+    return True
+if A or a or E or e or I or i or O or o or U or u not in str:
+    return False
+return True #do I need an only statement in here?
+return (acount, ecount, icount, ocount, ucount)
+def wedge(frequency):
+    a = acount
+    e = ecount
+    i = icount
+    o = ocount
+    u = ucount
+    a + e + i + o + u = total_frequency
+    frequency_wedge(a) = a / total_frequency
+    frequency_wedge(e) = e / total_frequency
+    frequency_wedge(i) = i / total_frequency
+    frequency_wedge(o) = o / total_frequency
+    frequency_wedge(u) = u / total_frequency
+def piechart(flist): #not sure about this part, debug/check later
+
+#Pie Chart
+import turtle #Part 2
+turtle.showturtle()
+
+def main():
+    astring = turtle.textinput("Welcome", "Type Your String")
+    imdone = vowelCount(astring)
+    if (imdone[5] == 0):
+        turtle.write("no vowels in the input", font = ("Calbri", 14, "normal"))
+    else:
+        pieChart(imdone)
+def pieChart(imdone):
+    anum = imdone[0]
+    enum = imdone[1]
+    inum = imdone[2]
+    onum = imdone[3]
+    unum = imdone[4]
+    total = float(anum+ enum + inum+ onum + unum)
+    apos = float("{0:.2f}".format((anum / total)*360))
+    epos = float("{0:.2f}".format((enum / total)*360))
+    ipos = float("{0:.2f}".format((inum / total)*360))
+    opos = float("{0:.2f}".format((onum / total)*360))
+    upos = float("{0:.2f}".format((unum / total)*360))
+    """turtle.setposition(100,0)"""
+
+    turtle.penup()
+    turtle.sety(-100)
+    turtle.pendown()
+    turtle.heading()
+    turtle.color("red")
+    turtle.begin_fill()
+    turtle.circle(100, apos)
+    postion = turtle.position()
+    turtle.write("a", align = "left")
+    turtle.goto(0,0)
+    turtle.end_fill()
+    turtle.setposition(postion)
+
+    turtle.color("blue")
+    turtle.begin_fill()
+    turtle.circle(100, epos)
+    postion = turtle.position()
+    turtle.write("e", align = "left")
+    turtle.goto(0,0)
+    turtle.end_fill()
+    turtle.setposition(postion)
+    turtle.color("green")
+    turtle.begin_fill()
+    turtle.circle(100, ipos)
+    postion = turtle.position()
+    turtle.write("i", align = "left")
+    turtle.goto(0,0)
+    turtle.end_fill()
+    turtle.setposition(postion)
+    turtle.color("orange")
+    turtle.begin_fill()
+    turtle.circle(100, opos)
+    postion = turtle.position()
+    turtle.write("o", align = "left")
+    turtle.goto(0,0)
+    turtle.end_fill()
+    turtle.setposition(postion)
+    turtle.color("yellow")
+    turtle.begin_fill()
+    turtle.circle(100, upos)
+    postion = turtle.position()
+    turtle.write("u", align = "left")
+    turtle.goto(0,0)
+    turtle.end_fill()
+    turtle.setposition(postion)
+def vowelCount(astring):
+    a = "a" #figure out if this needs to be in quotes
+    e = "e"
+    i = "i"
+    o = "o"
+    u = "u"
+    A = "A"
+    E = "E"
+    I = "I"
+    O = "O"
+    U = "U"
+    counta = astring.count(a)
+    counta += astring.count(A)
+    counte = astring.count(e)
+    counte += astring.count(E)
+    counti = astring.count(i)
+    counti += astring.count(I)
+    counto = astring.count(o)
+    counto += astring.count(O)
+    countu = astring.count(u)
+    countu += astring.count(U)
+    if (counta == 0 & counte == 0 & counti == 0 & counto == 0 & countu == 0):
+        countnovo = 0
+    else:
+        countnovo = 1
+    imdone = [counta, counte, counti, counto, countu, countnovo]
+    return imdone
+    turtle.hideturtle()
+
+#tried first and didnt work with the filloing
+"""turtle.circle(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.heading()
+turtle.write("a", font = ("Calbri", 14, "normal"))
+turtle.setheading(270+apos)
+turtle.forward(100)
+turtle.backward(100)
+turtle.setheading(270+epos+apos)
+turtle.forward(100)
+turtle.backward(100)
+turtle.setheading(270+ipos+epos+apos)
+turtle.forward(100)
+turtle.backward(100)
+turtle.setheading(270+opos+ipos+epos+apos)
+turtle.forward(100)"""
