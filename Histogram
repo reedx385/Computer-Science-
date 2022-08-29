@@ -1,0 +1,24 @@
+import random
+from collections import defaultdict
+
+"""def main():
+    dice = int("2: "))
+    sides = int(input("6: "))
+    rolls = int(input("15: "))
+    result = roll(dice, sides, rolls)
+    for i in range(dice, dice * sides + 1):
+        print('{:2d}{:10,d}{:10.4%}'.format(i, result[i], result[i] / rolls))
+    print(histogram(result, dice, sides, rolls))
+    def roll(dice, sides, rolls):
+    d = defaultdict(int)
+    for i in range(rolls):
+        d[sum(random.randint(1, sides) for i in range(dice))] += 1
+    return d"""
+
+def histogram(result, dice, sides, rolls):
+    maxBar = str(80)
+    for x in result:
+        p = str(x)
+        if p <= maxBar:
+            p += '#'
+    return p
