@@ -1,0 +1,64 @@
+#BMR
+def bmr(weight, height, age, gender):
+    if gender == ’F’:
+        return (655 + (4.3 * weight) + (4.7 * height) - (4.7 * age))
+    elif gender == ’M’:
+        return (66 + (6.3 * weight) + (12.9 * height) - (6.8 * age))
+    else:
+        return 0
+
+def main():
+    #weight height and age are floats
+    userweight = float(input(’Enter your weight: ’))
+    userheight = float(input(’Enter your height: ’))
+    userage = float(input(’Enter your age: ’))
+    usergender = input(’Enter your gender: ’)
+    candybars = bmr(userweight, userheight, userage, usergender)/230
+    print(’You can have’, candybars, ’candy bars!’)
+
+
+#cold outside and use procedural composition
+#twc = 35.74 + 0.6215ta - 35.75v0.16 + 0.4275ta v0.16
+def windchill(tempambient, windvelocity):
+    pt1 = 35.74 + 0.6215 * tempambient - 35.75 * windvelocity**0.16
+    pt2 = 0.4275 * tempambient * windvelocity**0.16
+    return pt1 + pt2
+
+def main():
+    temp = float(input(’Enter temperature (F): ’))
+    velocity = float(input(’Enter wind velocity (MPH): ’))
+    print(’The windchill is:’, windchill(temp, velocity))
+
+#turtle star
+import turtle
+turtle.showturtle
+def makeline(length):
+    turtle.backward(length)
+    turtle.left(144)
+def drawstar(length):
+    makeline(length)
+    makeline(length)
+    makeline(length)
+    makeline(length)
+    makeline(length) #also could use a loop instead of 5times
+def main():
+    l = turtle.numinput(’’, ’Side length: ’)
+    drawstar(l)
+
+#line equation
+def slope(x1, y1, x2, y2):
+    if x2 - x1 != 0:
+        return (y2 - y1) / (x2 - x1)
+    else:
+        return float(’inf’) #infinite values
+def main():
+    ux1 = float(input(’Enter first x value: ’))
+    uy1 = float(input(’Enter first y value: ’))
+    ux2 = float(input(’Enter second x value: ’))
+    uy2 = float(input(’Enter second y value: ’))
+    m = slope(ux1, uy1, ux2, uy2)
+    if m != float(’inf’):
+        b = uy1 - m*ux1
+    else:
+        b = float(’inf’)
+    print(’y =’, m, ’x +’, b)
