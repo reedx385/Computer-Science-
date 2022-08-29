@@ -1,0 +1,26 @@
+class Display():
+    def __init__(self):
+        self.turtvar = turtle.Turtle()
+        self.scrnvar = self.turtvar.getscreen()
+        self.elementlist = []
+        self.turtvar.speed(0)
+        self.scrnvar.delay(0)
+        self.turtvar.hideturtle()
+        self.scrnvar.onclick(self.mouseEvent)
+    def mouseEvent(self, x=0, y=0):
+        myCircle.setFilled(True)
+        #color = ['alice blue', 'azure2', 'LavenderBlush', 'pink'] #pastels and if we want to make the shaps have color
+        #https://www.tcl.tk/man/tcl8.4/TkCmd/colors.htm
+        myCircle.draw(self.turtvar)
+
+    """def draw(self, myt):
+        myt.penup()
+        myt.goto(self.x, self.y)
+        myt.pendown()
+        myt.color(self.fillcolor)
+        myt.begin_fill()
+        myt.circle(self.radius)
+        myt.end_fill()
+        #a = Circle()
+        #b = turtle.turtle
+        #a.draw(b)"""
