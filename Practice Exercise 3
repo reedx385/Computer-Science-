@@ -1,0 +1,140 @@
+#compound interest
+def compoundinterest(starting, target, interestrate):
+    interestrate += 1 #(100% + interest_rate)
+    years = 0
+    amount = starting
+    while amount < target:
+        amount *= interestrate
+        years += 1
+    return years
+
+def main():
+    startingamt = float(input(’Enter a starting amount: ’))
+    targetamt = float(input(’Enter a target amount: ’))
+    interestrate = float(input(’Enter an interest rate: ’))
+    print(compoundinterest(startingamt, targetamt, interestrate), ’years’)
+
+#perfect numbers
+def perfect(num):
+total = 0
+i=1
+    if num % i == 0:
+            total += i
+        i += 1
+    if total == num:
+        return True
+    else:
+return False
+def main():
+    lower = int(input(’Enter the lower bound: ’))
+    upper = int(input(’Enter the upper bound: ’))
+    while lower <= upper:
+        if perfect(lower):
+            print(lower)
+lower += 1
+
+#orbit turtle
+import turtle
+import math
+def main():
+    planet = turtle.Turtle()
+    planet.color(’blue’)
+    planet.dot(40)
+    planet.shape(’circle’)
+    planet.color(’pink’)
+    planet.penup()
+    planet.speed(0)
+    radius = 150
+    num_rev = 0
+    while numrev < 3:
+        degree = 0
+        while degree < 360:
+            x = math.cos(math.radians(degree)) * radius
+            y = math.sin(math.radians(degree)) * radius
+            planet.goto(x,y)
+            degree += 1
+num_rev += 1
+
+def main():
+    planet = turtle.Turtle()
+    planet.color(’yellow’)
+    planet.dot(40)
+    planet.shape(’circle’)
+    planet.color(’blue’)
+    planet.penup()
+    planet.speed(0)
+    pradius = 150
+    moon = turtle.Turtle()
+    moon.color(’green’)
+    moon.shape(’circle’)
+    moon.penup()
+moon.speed(0)
+    moon.shapesize(0.5, 0.5)
+    mradius = 80
+    numrev = 0
+    while numrev < 3:
+        degree = 0
+        while degree < 360:
+            x = math.cos(math.radians(degree)) * pradius
+            y = math.sin(math.radians(degree)) * pradius
+            planet.goto(x,y)
+            degree += 2
+            mdeg = 0
+            while m_deg < 360:
+                mx = x + math.cos(math.radians(m_deg)) * mradius
+                my = y + math.sin(math.radians(m_deg)) * mradius
+                moon.goto(mx, my)
+                mdeg += 5
+        numrev += 1
+    return
+
+#greatest common divisor
+def gcd(a, b):
+    if a < 0:
+a = -a if b < 0:
+b = -b
+r = min(a, b) while b != 0: r=a%b
+a=b
+b=r return a
+def main():
+    keepgoing = True
+    while keepgoing:
+        a = input(’Enter the first number: ’)
+        if a != ’’:
+            a = int(a)
+            b = input(’Enter the second number: ’)
+            if b != ’’:
+                b = int(b)
+                print(’The GCD of’, a, ’and’, b, ’is’, gcd(a, b))
+                print()
+            else:
+                keepgoing = False
+        else:
+            keepgoing = False
+
+#craps
+import random
+def main():
+    d1 = random.randint(1, 6)
+    d2 = random.randint(1, 6)
+    comeout = d1 + d2
+    print(’Initial roll is: [’ + str(d1) + ’,’ + str(d2) + ’] =’, comeout)
+    if comeout == 7 or comeout == 11:
+        print(’You win!’)
+    elif comeout == 2 or comeout == 3 or comeout == 12:
+        print(’Craps!  Sorry, you lose’)
+    else:
+        point = comeout
+        print(’Point is ’ + str(point) + ’. Roll again.’)
+        d1 = random.randint(1, 6)
+        d2 = random.randint(1, 6)
+        total = d1 + d2
+        print(’  Roll is: [’ + str(d1) + ’,’ + str(d2) + ’] =’, total, end=’ ’)
+        while total != point and total != 7:
+            d1 = random.randint(1, 6)
+            d2 = random.randint(1, 6)
+            total = d1 + d2
+        if total == point:
+            print(’You win!’)
+        else:
+            print(’Sorry, you lose’)
