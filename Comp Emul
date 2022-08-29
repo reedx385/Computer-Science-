@@ -1,0 +1,16 @@
+def emul (a,b):
+    product = 0
+    newa = abs(a)
+    newb = abs(b)
+    while newb > 0:
+        if newb%2 != 0:
+            product = newa + product
+        newa = newa*2
+        newb = newb//2
+    if a < 0 and b >= 0:
+        product = product * -1
+    elif a>= 0 and b < 0:
+        product = product * -1
+    else:
+        product = product 
+    return product
