@@ -1,0 +1,2 @@
+class mandelbrot():
+    import complex.py
