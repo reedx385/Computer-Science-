@@ -1,0 +1,58 @@
+#Identify
+def identify(n):
+    m = matrix(n, 0)
+    for i in range(n):
+        m[i][i]= 1
+    return m
+
+def matrix(n, init):
+    list1 = []
+    i = 0
+    while i < n:
+        list2 = []
+        j = 0
+        while j < n:
+            list2 += [init]
+            j += 1
+        list1 += [list2]
+        i += 1
+    return list1        
+   
+#Matrices
+def matrix(n, init):
+    list1 = []
+    i = 0
+    while i < n:
+        list2 = []
+        j = 0
+        while j < n:
+            list2 += [init]
+            j += 1
+        list1 += [list2]
+        i += 1
+    return list1
+
+#Matrices 2
+def order(m):
+    return len(m)
+    
+ #Sparce
+ import random
+def populate(m,n,value):
+    i= 0
+    while i < n:
+        x= random.randint(0, order(m)-1)
+        y= random.randint(0, order(m)-1)
+        m[y][x] = value
+        i = i + 1
+    return m
+
+def matrix1(n, init):
+    matrix1 = []
+    for i in range(n):
+        list1= [init]*n
+        matrix1.append(list1)
+    return matrix1
+
+def order(m):
+    return len(m)
