@@ -1,0 +1,60 @@
+#This file needs two Excel file uploads to properly run
+#"all_day"
+#"bananas"
+#And file "6502" Microprocessor 
+#warmups
+#CSV files-file records
+import random
+def csvthang():
+    userinput = input("Pick a file ")
+    ourfile =open(userinput, "w")
+    for i in range(1,1001):
+        start = ''
+        value = random.randint(-1000, 1000)
+        start = str(i) + "," + str(value) + "\n"
+        ourfile.write(start)
+    ourfile.close()
+#stretch
+def ltrcount():
+    userinput = input("Pick a file ")
+    dafile =open(userinput, "r")
+    alphadict = {}
+    ltrsolo = ''
+    for i in dafile.read():
+        if i.isalpha():
+            ltrsolo = ltrsolo + i
+    letterslower = ltrsolo.lower()
+    for j in letterslower:
+        if j not in alphadict:
+            alphadict[j] = 1
+        else:
+            alphadict[j] += 1
+    print(alphadict)
+#workout
+"""def earthq():
+    userinput = input("Pick a file ")
+    thefile = open(userinput, "r")
+    firstline = thefile.readline()
+    thefile.close()
+    for i in range(len(firstline.split(","))):
+        print(i, " ", firstline.split(",")[i])"""
+def earth():
+    userinput = input("Pick a file ")
+    fileearth = open(userinput, "r")
+    count = 0
+    empty = ''
+    for i in fileearth:
+        if i[0].isalpha():
+            ha = i.split(',')
+            for j in ha:
+                empty += str(count) + ' ' + str(j) + '\n'
+                count += 1
+    print(empty)
+    fileearth.close() #emma's way
+#workout2
+def earthq2():
+    userinput = input("Pick a file ")
+    thefile = open(userinput, "r")
+    count = 0
+    empty = ''
+    for i in thefile: #not finished
