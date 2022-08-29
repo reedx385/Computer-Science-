@@ -1,0 +1,47 @@
+class complex():
+    def __init__(self, real=0, imag=0):
+        self.real = real
+        self.imag = imag
+
+    def getreal(self):
+        return float("{0:.2f}".format(self.real))
+
+    def getimag(self):
+        return float("{0:.2f}".format(self.imag))
+
+    def setreal(self, real):
+        self.real = real
+
+    def setimag(self, imag):
+        self.imag = imag
+
+    def __repr__(self):
+        potato = str(self.real)
+        if (self.imag < 0):
+            operator = ''
+        else:
+            operator = '+'
+
+        if (self.imag == 0):
+            return potato
+        else:
+            potato += operator + str(self.imag) + 'i'
+            return potato
+
+
+    def __add__(self,other):
+        k = self.real + other.real
+        l = self.imag + other.imag
+        j = complex(k,l)
+        return j
+
+    def __mul__(self, other):
+        a = self.real * other.real
+        b = self.imag * other.imag
+        c = self.real * other.imag
+        d = other.real * self.imag
+        e = complex((a+b*-1),(c +d))
+        return e
+
+    def __abs__(self):
+        return (self.real * self.real + self.imag * self.imag )**(1/2.0)
