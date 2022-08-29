@@ -1,0 +1,22 @@
+import turtle
+turtle.showturtle()
+from turtle import Turtle
+from random import randint
+
+penup()
+turtle.setworldcoordinates(0,0,500,500)
+
+tim = Turtle()
+tim.color('red')
+tim.shape('turtle')
+tim.goto(0,100)
+
+bob = Turtle()
+bob.color('blue')
+bob.shape('turtle')
+bob.goto(0,200)
+
+ivy = Turtle()
+ivy.shape('turtle')
+ivy.color('green')
+ivy.goto(0,300)
