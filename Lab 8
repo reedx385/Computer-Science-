@@ -1,0 +1,69 @@
+#warm up
+"""def foo(n):
+    if n<1:
+        print('')
+    else:
+        print('*',end='') #print on samee line "
+        foo ( n-1 )
+#this function prints stars
+#recursive base:n > 1
+#"base case": it wont run otherwise
+#yes because its always getting smaller and closer, but not if less than one
+#recursion depends on base case (because of the smaller steps)
+
+def reverseNum(n):
+    if n<10:
+        return n
+    else:
+        return int(str(n%10)+ str(reverseNum(n//10)))
+def main():
+    n=int(input("Enter a number: "))
+    print(n%10,end='')
+    print(reverseNum(n//10))
+
+def maxValue( vals ):
+    if len(vals) == 1:
+        return (vals[0]) #base case
+    elif vals[0]<vals[1]:
+        del vals[0]
+        return (maxValue(vals))
+    else:
+        del vals[1]
+        return (maxValue(vals))
+
+#stretch
+#Fibonacci Numbers
+def fibo(n):
+    if n<= 1:
+        return(n)
+    else:
+        f = fibo(n-1) + fibo(n-2)
+        return(f)
+def printfibo():
+    for i in range(0, 21):
+        print(fibo(i))
+"""
+#Fractal Trees
+import turtle
+import random
+def tree(t, trunkLength):
+    if trunkLength< 5:
+        return
+    else:
+        rangle = random.randint(15, 45)
+        langle= 0
+        while langle < rangle:
+            langle = random.randint(15, 45)
+        rlength = random.randint(12, 18)
+        llength = random.randint(12, 18)
+        t.forward(trunkLength)
+        t.right(rangle)
+        tree(t, trunkLength-rlength)
+        t.left(rangle + langle)
+        tree(t, trunkLength-llength)
+        t.right(langle)
+        t.backward(trunkLength)
+
+def treemain():
+    t= turtle.Turtle()
+    tree(t,100)
