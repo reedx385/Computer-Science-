@@ -1,0 +1,370 @@
+#Graded project for comp sci
+
+import turtle
+turtle.hideturtle()
+oth = turtle.Screen()
+oth.bgcolor('white')
+oth.title('Othello')
+turtle.speed(0)
+turtle.penup()
+
+def main():
+    #the human user will always be black and will go first
+    #at begining all is unused so u-initializing array
+    #will eventually be w,b, or u
+    x = 8
+    board =[['u' for i in range(0,x)] for j in range(0,x)]
+    board[3][3] = 'w'
+    board[4][4] = 'w'
+    board[3][4] = 'b'
+    board[4][3] = 'b'
+    #the input starts the game
+    displayboard(board)
+    nextplay = 1
+    while(nextplay == 1):
+        #print('line 30',getValidMoves(board, 'b'))
+        row = turtle.textinput("Welcome", "Enter row,col")
+        #the program will terminate if the user entered a null string or invalid input
+        #ex. 3, 3 === this will be invalid because it should have been 3,3
+        if (inputerrorcheck(row)==1):
+            terminate()
+        else:
+            repeat = 1
+            ##print('repeat =',repeat)
+            while(repeat == 1):
+                if (inputerrorcheck(row)==1):
+                    terminate()
+                else:
+
+                    usrrow = int(row[0])
+                    usrcol = int(row[2])
+                    ##print('here',isValidMove(board, usrrow, usrcol, 'b') )
+                    if (isValidMove(board, usrrow, usrcol, 'b') == 1):#one is true
+                        placetoken(board, usrrow, usrcol,'b')
+                        #board[usrrow][usrcol] = 'b' #marked as black for user
+                        counter = 0
+                        comrow, comcol = selectNextPlay(board,counter)
+                        ##print('line 51',comrow, comcol)
+                        ##print('line 52',isValidMove(board, comrow, comcol, 'w'))
+                        while(isValidMove(board, comrow, comcol, 'w') == 0):
+                            counter = counter+1
+                            comrow, comcol = selectNextPlay(board,counter)
+                        ##print(comrow,comcol)
+                        placetoken(board, comrow, comcol,'w')
+                        #board[comrow][comcol] = 'w'
+                        repeat = 0
+                        #for l in range(0,8):
+                            #(board[0][l],board[1][l],board[2][l],board[3][l],board[4][l],board[5][l],board[6][l],board[7][l])
+
+
+                    else:
+                        row = turtle.textinput("Welcome", "You entered an invalid move. Reenter row,col")
+        #check if the board is occuied
+        check1 = checkend(board)
+        ##print('check1 = ',check1)
+        #check if there are valid moves avalable.
+        check2 = 0
+        movesblack = getValidMoves(board, 'b')
+        moveswhite = getValidMoves(board, 'w')
+        if((len(movesblack) == 0) and (len(moveswhite) == 0)):
+            check2 = 1
+        #print('check2 = ',check2)
+        if((check1 == 1) or (check2 == 1)):
+            nextplay = 0
+        #print(nextplay)
+    endmessage(board)
+
+def endmessage(board):
+    usercount = 0
+    computercount=0
+    for b in range(0,8):
+        for c in range(0,8):
+            if(board[c][b] == 'w'):
+                computercount = computercount +1
+            elif(board[c][b] == 'b'):
+                usercount = 1+ usercount
+
+    turtle.setposition(100,-300)
+    turtle.pensize(100)
+    turtle.color('red')
+    if(usercount >= computercount):
+        turtle.write("User is the winner","And their score is:")
+    else:
+        turtle.write("Computer is the winner","And their score is:")
+
+
+
+def terminate():
+    turtle.setposition(-200,0)
+    turtle.color('black')
+    turtle.pensize(500)
+    turtle.write("You entered an invalid input, the game will be terminated")
+    turtle.penup()
+    turtle.done()
+
+def placetoken(board, row, col,color):
+
+    if(color == 'w'):
+        pencolor = 'white'
+    else:
+        pencolor = 'black'
+
+    moves = getValidMoves(board, color)
+    change = getChange(board, color)
+    ##print(moves)
+    ##print(change)
+    ##print('length',len(moves))
+    for t in range(0,len(moves)):
+        ##print(row, col, moves[t][0],moves[t][1])
+        if((row == moves[t][0]) and (col == moves[t][1])):
+            changerow = change[t][0]
+            changecol = change[t][1]
+            changerow = changerow * (-1)
+            changecol = changecol * (-1)
+            ##print(changerow,changecol)
+
+            nextrow = row
+            nextcol = col
+            ##print(changerow,changecol)
+
+            while(board[nextrow][nextcol]!= color):
+                ##print(color, pencolor)
+
+                board[nextrow][nextcol] = color
+                ##print(board[nextrow][nextcol],nextrow,nextcol)
+                x = -250 + (70 * nextrow)
+                y = 250 - (70 * nextcol)
+
+                turtle.setposition(x,y)
+                turtle.speed(0)
+                if((nextrow == 4)and(nextcol == 3)and(color == 'b')):
+                    turtle.shape('circle')
+                    turtle.color('black')
+                    turtle.shapesize(3)
+                    turtle.stamp()
+
+                turtle.shape('circle')
+                turtle.color(pencolor)
+                turtle.shapesize(3)
+                turtle.stamp()
+                nextrow = nextrow + changerow
+                nextcol = nextcol + changecol
+
+def selectNextPlay(board,counter):
+    moves = getValidMoves(board, 'w')
+    return(moves[counter][0], moves[counter][1])
+
+def getChange(board,color):
+    change = []
+    if (color == 'w'):
+        opcolor = 'b'
+    else:
+        opcolor = 'w'
+    ##print('Color and Opposite color',color,opcolor)
+
+    for  oricol in range(0,8):
+        for orirow in range(0,8):
+            if(board[orirow][oricol] == color):
+                ##print('When it find the color in the board',board[orirow][oricol], orirow,oricol)
+                rowtop = orirow-1
+                coltop = oricol-1
+                ##print('The top coner of that color',rowtop,coltop)
+                for innercol in range(coltop,coltop+3):
+                    for innerrow in range(rowtop,rowtop+3):
+                        if(inGrid(innerrow,innercol) == 1):#making sure its not an edge spot
+                            ##print('If the small grid point is in grid or not and the coordinates for that',inGrid(innerrow,innercol),innerrow,innercol)
+                            if (board[innerrow][innercol] == opcolor):
+                                ##print('If the point they found has opposite color',board[innerrow][innercol], innerrow, innercol)
+                                changeinrow = innerrow-orirow
+                                changincol = innercol-oricol
+                                ##print('The change in value to see the lines',changeinrow,changincol)
+                                loop = 1
+                                nextrow = orirow
+                                nextcol = oricol
+                                while(loop == 1):
+                                    nextrow = nextrow + changeinrow
+                                    nextcol = nextcol + changincol
+                                    ##print('Where is it looking next',nextrow,nextcol)
+                                    if(inGrid(nextrow,nextcol) == 1):
+                                        ##print('if the next one is in grid or not and it coordinates',inGrid(nextrow,nextcol), board[nextrow][nextcol])
+                                        if (board[nextrow][nextcol] == color):
+                                            loop =0
+                                        elif (board[nextrow][nextcol] == 'u'):
+
+                                            prow = nextrow-1
+                                            pcol = nextcol-1
+                                            for i in range(pcol,pcol+3):
+                                                for j in range(prow,prow+3):
+                                                    if(inGrid(i,j) == 1):
+                                                        if (board[i][j] == opcolor):
+                                                            change.append([changeinrow,changincol])
+
+                                            loop = 0
+                                            ##print('array',moves)
+                                    else:
+                                        loop = 0
+    return change
+
+def getValidMoves(board, color):
+    moves=[]
+
+    if (color == 'w'):
+        opcolor = 'b'
+    else:
+        opcolor = 'w'
+    ##print('Color and Opposite color',color,opcolor)
+
+    for  oricol in range(0,8):
+        for orirow in range(0,8):
+            if(board[orirow][oricol] == color):
+                ##print('When it find the color in the board',board[orirow][oricol], orirow,oricol)
+                rowtop = orirow-1
+                coltop = oricol-1
+                ##print('The top coner of that color',rowtop,coltop)
+                for innercol in range(coltop,coltop+3):
+                    for innerrow in range(rowtop,rowtop+3):
+                        if(inGrid(innerrow,innercol) == 1):#making sure its not an edge spot
+                            ##print('If the small grid point is in grid or not and the coordinates for that',inGrid(innerrow,innercol),innerrow,innercol)
+                            if (board[innerrow][innercol] == opcolor):
+                                ##print('If the point they found has opposite color',board[innerrow][innercol], innerrow, innercol)
+                                changeinrow = innerrow-orirow
+                                changincol = innercol-oricol
+                                ##print('The change in value to see the lines',changeinrow,changincol)
+                                loop = 1
+                                nextrow = orirow
+                                nextcol = oricol
+                                while(loop == 1):
+                                    nextrow = nextrow + changeinrow
+                                    nextcol = nextcol + changincol
+                                    ##print('Where is it looking next',nextrow,nextcol)
+                                    if(inGrid(nextrow,nextcol) == 1):
+                                        ##print('if the next one is in grid or not and it coordinates',inGrid(nextrow,nextcol), board[nextrow][nextcol])
+                                        if (board[nextrow][nextcol] == color):
+                                            loop =0
+                                        elif (board[nextrow][nextcol] == 'u'):
+                                            prow = nextrow-1
+                                            pcol = nextcol-1
+                                            for i in range(pcol,pcol+3):
+                                                for j in range(prow,prow+3):
+                                                    if(inGrid(i,j) == 1):
+                                                        if (board[i][j] == opcolor):
+                                                            moves.append([nextrow,nextcol])
+
+                                            loop = 0
+                                            ##print('array',moves)
+                                    else:
+                                        loop = 0
+
+
+    return moves
+
+def isValidMove(board, row, col, color):
+    #checking if the space is unoccupied
+    rule1 = rule2 = rule3 = 0
+
+    if (color == 'w'):
+        opcolor = 'b'
+    else:
+        opcolor = 'w'
+
+    ##print(col)
+    #rule 1
+    if (board[row][col] == 'u'):
+        rule1 = 1
+    #print('rule1',rule1)
+
+    #rule 2
+    rowtop = row-1
+    coltop = col-1
+    for i in range(coltop,coltop+3):
+        for j in range(rowtop,rowtop+3):
+            if(inGrid(i,j) == 1):
+                if (board[i][j] == opcolor):
+                    rule2 = 1
+    #print('rule2',rule2)
+    #rule 3
+    moves = getValidMoves(board, color)
+    for t in range(0,len(moves)):
+        if((row == moves[t][0]) and (col == moves[t][1])):
+            rule3 = 1
+
+    if((rule1 == 1) and (rule2 == 1) and (rule3 == 1)):
+        return 1
+    else:
+        return 0
+    #print('Rule 3', rule3)
+    #if returns false is not valid
+
+#def endgame(board):
+def inGrid(k,l):
+    if((k >= 0) and (k <= 7) and (l >= 0) and (l <= 7)):
+        return 1
+    else:
+        return 0
+def inputerrorcheck(row):
+    if (row == ''):
+        return 1
+    else:
+        if ((row[0] == ' ') or (row[2] == ' ')):
+            return 1
+        else:
+            return 0
+
+def checkend(board):
+    for w in range(0,8):
+        for x in range(0,8):
+            if (board[w][x] == 'u'):
+                return 0 #this function checks if board is occupied.
+            #game ends if: somone wins, board occuied, no longer valid moves, terminated
+    return 1
+    #ending message is winner and final score
+    #need a conditional
+    #a loop that fills in each box
+def displayboard(board):
+    #will display the board
+    x = -250
+    y = 300
+    for j in range(0,8):
+        turtle.setposition(x,y)
+        turtle.write(j)
+        x=x+70
+
+    x = -300
+    y = 250
+    for j in range(0,8):
+        turtle.setposition(x,y)
+        turtle.write(j)
+        y=y-70
+
+    x = -250
+    y = 250
+    for i in range(0,8):
+        for j in range(0,8):
+            turtle.speed(0)
+            turtle.setposition(x,y)
+            turtle.shape('square')
+            turtle.color("grey")
+            turtle.shapesize(3)
+            turtle.stamp()
+            x=x+70
+        x=-250
+        y=y-70
+
+    x = -250
+    y = 250
+    for i in range(0,8):
+        for j in range(0,8):
+            turtle.speed(0)
+            turtle.setposition(x,y)
+            turtle.shape('circle')
+            if(board[j][i] == 'w'):
+                turtle.color("white")
+                turtle.shapesize(3)
+                turtle.stamp()
+            if(board[j][i] == 'b'):
+                turtle.color("black")
+                turtle.shapesize(3)
+                turtle.stamp()
+            x=x+70
+        x=-250
+        y=y-70
