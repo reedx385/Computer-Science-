@@ -1,0 +1,114 @@
+#draw square
+import turtle
+turtle.showturtle()
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+forward = turtle.numinput('','Enter a number: ')
+left = turtle.numinput('','Enter a number: ')
+
+#drawsquare 2
+import turtle
+turtle.showturtle()
+"""turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(100)
+def Drawsquare( ):
+  turtle.forward(100)
+  turtle.left(90)
+  turtle.forward(100)
+  turtle.left(90)
+  turtle.forward(100)
+  turtle.left(90)
+  turtle.forward(100)
+  turtle.left(90)
+ count = 0
+ while count < 10:
+     Drawsquare()
+     turtle.left(30)
+     count = count + 1"""
+def Drawsquare(sidelength ):
+    turtle.forward(sidelength)
+    turtle.left(90)
+    turtle.forward(sidelength)
+    turtle.left(90)
+    turtle.forward(sidelength)
+    turtle.left(90)
+    turtle.forward(sidelength)
+    turtle.left(90)
+def main():
+    count = 0
+    while count < 6:
+        count = count + 1
+        Drawsquare(100)
+        turtle.left(30)
+        Drawsquare(200)
+        turtle.left(30)
+        Drawsquare(300)
+
+#Olympic
+import turtle
+turtle.showturtle
+"""def Drawcircle(10):
+    pi = 3.14159
+    2*(pi)*(100)"""
+def main( ):
+    def Drawcircle(radius):
+        turtle.forward(100)
+        pi = 3.14159
+        2 * (pi) * (radius)
+    r = 0
+    while r < 10:
+        r = r + 1
+        Drawcircle(100)
+        turtle.left(30)
+        Drawcircle(200)
+        turtle.left(30)
+        Drawcircle(300)
+        turtle.left(30)
+        Drawcircle(400)
+
+#pychall
+import turtle
+turtle.showturtle()
+
+def main():
+    """"myPen=turtle.turtle()
+    turtle.delay(5) #speed setting"""
+
+    for i in range(0,11):
+        yFrom = 10-i
+        xTo = i
+        turtle.penup()
+        turtle.goto(0,20*yFrom)
+        turtle.pendown()
+        turtle.goto(20*xTo,0)
+    for i in range(0,11):
+            yFrom = i
+            xTo = 10-i
+            turtle.penup()
+            turtle.goto(0,-20*yFrom)
+            turtle.pendown()
+            turtle.goto(-20*xTo,0)
+    for i in range(0,11):
+            yFrom = -10+i
+            xTo = i
+            turtle.penup()
+            turtle.goto(20*xTo,0)
+            turtle.pendown()
+            turtle.goto(0,20*yFrom)
+    for i in range (0,11): #ask in office hours
+            xFrom = i
+            xTo = -10+i
+            turtle.penup()
+            turtle.goto(20*xTo,0)
+            turtle.pendown()
+            turtle.goto(0,20*xFrom)
