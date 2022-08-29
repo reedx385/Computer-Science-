@@ -1,0 +1,40 @@
+def ltrcount(astring):
+    astring.lower
+    count = 0
+    for ch in astring:
+        if ch.isalpha() == True:
+            count += 1
+    return (count)
+
+def reverse(astring):
+    rstring = ""
+    n = len(astring)-1
+    while n >= 0:
+        rstring += astring[n]
+        n = n - 1
+    return rstring
+
+def ispalindrome(userpal):
+    userpal = userpal.lower()
+    count = ""
+    for ch in userpal:
+        if ch.isalpha() == True:
+            count += ch
+    testpal= reverse(count)
+    test = False
+    if testpal == count:
+        test = True
+    else:
+        test = False
+    return test
+
+def testing():
+    cont = "y"
+    while cont == "y":
+        userpal= input ("A new string")
+        pal = ispalindrome(userpal)
+        if pal == True:
+            print("is a palindrome")
+        else:
+            print("is not a palindrome")
+        cont = input("Continue? (y/n): ")
